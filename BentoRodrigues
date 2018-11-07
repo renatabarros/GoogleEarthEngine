@@ -1,0 +1,64 @@
+var landsat = ee.ImageCollection("LANDSAT/LC08/C01/T1_TOA"),
+    area = /* color: #98ff00 */ee.Geometry.Polygon(
+        [[[-43.55323791503906, -20.17592093460731],
+          [-43.55323791503906, -20.236642699928453],
+          [-43.55426788330078, -20.32119043336442],
+          [-43.24047088623047, -20.32183434109959],
+          [-43.2421875, -20.17624319007613]]]);
+          
+// Get an RGB image
+
+var vis = {min:0, max:0.3, bands: ["B4", "B3", "B2"]}
+
+// Filter image to get rid of clouds
+
+// var filter = landsat.filterDate("2015-06-01", "2015-09-01")
+// Map.addLayer(filter.select("B[1-9]"), vis)
+
+// Set the area of interest
+var clipped = (area)
+
+// 2015
+var composite = landsat.filterDate("2015-02-01", "2015-03-01")
+var imageA = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_217074_20150213")
+  .select(['B4', 'B3', 'B2']);
+Map.addLayer(imageA, vis, "Feb 2015"); // before dam break
+
+var imageB = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_217074_20150824")
+Map.addLayer(imageB, vis, "Aug 2015") // before dam break
+
+var imageC = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_217074_20151011")
+Map.addLayer(imageC, vis, "Oct 2015") // before dam break
+
+var imageD = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_217074_20151112")
+Map.addLayer(imageD, vis, "Nov 2015") // after dam break, Nov
+
+// 2016
+
+// var filter = landsat.filterDate("2017-01-01", "2017-03-01")
+// Map.addLayer(filter.select("B[1-9]"), vis)
+
+var imageE = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_217074_20160623")
+Map.addLayer(imageE, vis, "Jun 2016") // after dam break, Jun
+
+var imageF = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_217074_20160810")
+Map.addLayer(imageF, vis, "Aug 2016") // after dam break, Aug
+
+// 2017
+
+// var filter = landsat.filterDate("2017-08-01", "2017-12-31")
+// Map.addLayer(filter.select("B[1-9]"), vis)
+
+var imageG = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_217074_20170101")
+Map.addLayer(imageG, vis, "Jan 2017") // after dam break, Jan
+
+var imageH = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_217074_20170829")
+Map.addLayer(imageH, vis, "Aug 2017") // after dam break, Aug
+
+// 2018
+
+// var filter = landsat.filterDate("2018-01-01", "2018-11-07")
+// Map.addLayer(filter.select("B[1-9]"), vis)
+
+var imageI = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_218074_20180127")
+Map.addLayer(imageI, vis, "Apr 2018") // after dam break, Apr 2018
